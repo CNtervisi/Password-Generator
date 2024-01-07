@@ -90,7 +90,16 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-
+  var passwordLength = prompt ("Choose a password length between 8 and 128.");
+  if (passwordLength < 8 || passwordLength > 128) {
+    alert ("Invald length. Please choose a number between 8 and 128.");
+    return getPasswordOptions ();
+  }
+  var lowerCase = confirm ("Do you want lowercase letters?");
+  var upperCase = confirm ("Do you want uppercase letters?");
+  var numbers = confirm ("Do you want numbers?");
+  var symbols = confirm ("Do you want symbols?");
+  return { passwordLength, lowerCase, upperCase, numbers, symbols };
 }
 
 // Function for getting a random element from an array
@@ -100,8 +109,7 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-  console.log ("You clicked the button")
-  return "Generated password will go here"
+
 }
 
 // Get references to the #generate element
