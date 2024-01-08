@@ -93,7 +93,7 @@ function getPasswordOptions() {
   var passwordLength = prompt ("Choose a password length between 8 and 128.");
   if (passwordLength < 8 || passwordLength > 128) {
     alert ("Invald length. Please choose a number between 8 and 128.");
-    return getPasswordOptions ();
+    return getPasswordOptions();
   }
   var lowerCase = confirm ("Do you want lowercase letters?");
   var upperCase = confirm ("Do you want uppercase letters?");
@@ -104,12 +104,33 @@ function getPasswordOptions() {
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+  var index = Math.floor(Math.random() * arr.length);
+  return arr[index];
 }
 
-// Function to generate password with user input
+// Function to generate random password with user's input
 function generatePassword() {
+  var options = getPasswordOptions ();
+  var password = "";
+  var typesCount = options.lowerCase + options.upperCase + options.numbers + options.symbols;
+  var all = [];
+  if (options.lowerCase) {
+    all = all.concat(lowerCasedCharacters);
+  }
+  if (options.upperCase) {
+    all = all.concat (upperCasedCharacters);
+  }
+  if (options.numbers) {
+    all = all.concat (numericCharacters);
+  }
+  if (options.symbols) {
+    all = all.concat (specialCharacters);
+  }
+  for (var i = 0; i < options.passwordLength; i++) {
+    password += getRandom(all);
+  }
 
+  return password;
 }
 
 // Get references to the #generate element
