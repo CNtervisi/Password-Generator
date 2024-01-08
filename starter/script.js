@@ -90,20 +90,23 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
+  // Prompt user to enter password length, ensure it's between 8 and 128
   var passwordLength = prompt ("Choose a password length between 8 and 128.");
   if (passwordLength < 8 || passwordLength > 128) {
     alert ("Invald length. Please choose a number between 8 and 128.");
     return getPasswordOptions();
   }
-  //if the user inputs anything else that is not a number between 8 OR 128, the prompt will ask the user to enter a number.
+ // Check if user input is a number, otherwise prompt again
   if (isNaN(passwordLength)) {
     alert("Invalid input. Please enter a number.");
     return getPasswordOptions();
   }
+  // Confirm whether user wants lowercase, uppercase, numeric, and symbolic characters in the password
   var lowerCase = confirm ("Do you want lowercase letters?");
   var upperCase = confirm ("Do you want uppercase letters?");
   var numbers = confirm ("Do you want numbers?");
   var symbols = confirm ("Do you want symbols?");
+  // Return the password options as an object
   return { passwordLength, lowerCase, upperCase, numbers, symbols };
 }
 
@@ -115,10 +118,12 @@ function getRandom(arr) {
 
 // Function to generate random password with user's input
 function generatePassword() {
+// Get the password options from the user
   var options = getPasswordOptions ();
   var password = "";
   var typesCount = options.lowerCase + options.upperCase + options.numbers + options.symbols;
   var all = [];
+// Concatenate the character arrays based on user's preference
   if (options.lowerCase) {
     all = all.concat(lowerCasedCharacters);
   }
@@ -131,10 +136,11 @@ function generatePassword() {
   if (options.symbols) {
     all = all.concat (specialCharacters);
   }
+// Generate the password by randomly selecting characters until reaching the desired length
   for (var i = 0; i < options.passwordLength; i++) {
     password += getRandom(all);
   }
-
+// Return the generated password
   return password;
 }
 
