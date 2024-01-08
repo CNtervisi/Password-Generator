@@ -15,7 +15,6 @@ This project involves creating a web-based application that allows users to gene
 ## Usage
 To use this application, the user will have to click on the Generate Password button on the webpage and enter the choices that are being prompted.
 
-
 Here is a screenshot of the password generator application:
 
 ![alt"console-screenshot"](./assets/05-javascript-challenge-demo.png)
