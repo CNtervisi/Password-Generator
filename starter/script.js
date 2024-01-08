@@ -95,6 +95,11 @@ function getPasswordOptions() {
     alert ("Invald length. Please choose a number between 8 and 128.");
     return getPasswordOptions();
   }
+  //if the user inputs anything else that is not a number between 8 OR 128, the prompt will ask the user to enter a number.
+  if (isNaN(passwordLength)) {
+    alert("Invalid input. Please enter a number.");
+    return getPasswordOptions();
+  }
   var lowerCase = confirm ("Do you want lowercase letters?");
   var upperCase = confirm ("Do you want uppercase letters?");
   var numbers = confirm ("Do you want numbers?");
